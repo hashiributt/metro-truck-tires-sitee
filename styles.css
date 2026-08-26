@@ -92,13 +92,13 @@ header{position:sticky; top:0; z-index:60; background:var(--bg-nav); border-bott
 .caret{font-size:0.65rem; transition:transform .2s;}
 .has-dropdown:hover .caret{transform:rotate(180deg);}
 .dropdown{
-  position:absolute; top:100%; left:0; margin-top:14px; min-width:220px;
+  position:absolute; top:100%; left:50%; margin-top:10px; min-width:220px;
   background:var(--bg-surface); border:1px solid var(--line); border-radius:3px; box-shadow:0 12px 28px rgba(0,0,0,0.14);
-  opacity:0; visibility:hidden; transform:translateY(6px);
+  opacity:0; visibility:hidden; transform:translate(-50%, 6px);
   transition:opacity .18s ease, transform .18s ease, visibility .18s;
   padding:8px 0;
 }
-.has-dropdown:hover .dropdown, .has-dropdown:focus-within .dropdown{opacity:1; visibility:visible; transform:translateY(0);}
+.has-dropdown:hover .dropdown, .has-dropdown:focus-within .dropdown{opacity:1; visibility:visible; transform:translate(-50%, 0);}
 .dropdown a{display:block; padding:10px 18px; font-family:'Inter',sans-serif; text-transform:none; letter-spacing:0; font-size:0.92rem; opacity:0.9;}
 .dropdown a:hover{background:var(--bg-page); opacity:1;}
 
@@ -134,7 +134,7 @@ header{position:sticky; top:0; z-index:60; background:var(--bg-nav); border-bott
   }
   .nav-links.open{display:flex;}
   .nav-links > li > a{padding:12px 0; justify-content:space-between; width:100%;}
-  .dropdown{position:static; opacity:1; visibility:visible; transform:none; box-shadow:none; border:none; margin:0 0 4px 12px; display:none; padding:0;}
+  .dropdown{position:static; opacity:1; visibility:visible; transform:none; box-shadow:none; border:none; margin:0 0 4px 12px; display:none; padding:0; min-width:0;}
   .has-dropdown.open .dropdown{display:block;}
   .burger{display:block;}
 }
@@ -300,4 +300,80 @@ footer{background:var(--bg-band); color:var(--band-muted); padding:52px 24px 26p
   html{scroll-behavior:auto;}
   .reveal, .reveal-stagger > *, .hero-in > *, .split-text .word-inner{opacity:1 !important; transform:none !important; animation:none !important; transition:none !important;}
   *{transition-duration:0.01ms !important;}
+}
+
+/* Keep anchored service headings visible below the sticky navigation. */
+#roadside, #flat-tire, #oil-change, #balancing, #alignment, #maintenance {
+  scroll-margin-top: 78px;
+}
+
+
+/* HARD MOBILE SERVICES DROPDOWN FIX */
+@media (max-width: 900px){
+  html, body { overflow-x: hidden; }
+
+  .nav,
+  .nav-links,
+  .nav-links > li,
+  .has-dropdown {
+    max-width: 100%;
+    box-sizing: border-box;
+  }
+
+  .has-dropdown {
+    position: static !important;
+    overflow: visible !important;
+  }
+
+  .has-dropdown .dropdown,
+  .has-dropdown:hover .dropdown,
+  .has-dropdown:focus-within .dropdown,
+  .has-dropdown.open .dropdown {
+    position: static !important;
+    top: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    left: auto !important;
+    transform: none !important;
+    translate: none !important;
+    margin: 0 !important;
+    padding: 2px 0 6px 16px !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    overflow: visible !important;
+    float: none !important;
+  }
+
+  .has-dropdown.open .dropdown {
+    display: block !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  .dropdown li {
+    display: block !important;
+    position: static !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    transform: none !important;
+    box-sizing: border-box !important;
+  }
+
+  .dropdown li a {
+    display: block !important;
+    position: static !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 10px 0 !important;
+    transform: none !important;
+    white-space: normal !important;
+    overflow-wrap: anywhere !important;
+    text-align: left !important;
+    box-sizing: border-box !important;
+  }
 }
